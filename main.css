@@ -1,5 +1,14 @@
+:root {
+    --light: #ddd;
+    --dark: #444;
+    --green: #68cf53;
+    --orange: #ffc505;
+}
+
 * {
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--dark);
 }
 
 body {
@@ -10,21 +19,157 @@ body {
 
 h2 {
     text-align: center;
+    font-size: 2.5rem;
+    margin: 20px 0;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 #playerContainer {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100vw;
+    min-height: 100vh;
+}
+
+#controls {
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    transform: translateX(-50%);
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: bottom 1s ease;
+}
+
+#controls * {
+    width: 10vw;
+    min-width: 60px;
+    max-width: 150px;
+    padding: 0;
+}
+
+#controls button {
+    margin: 5px 0;    
+}
+
+#controls button:not(#roll) {
+    font-weight: bold;
+    font-size: 1rem;
+    background: var(--light);    
+    border: 2px solid var(--dark);
+    padding: 1rem 0;
+}
+
+#controls.gameOver #roll, #controls.gameOver #hold {
+    display: none;
+}
+
+.bottom {
+    bottom: 0 !important;
+}
+
+#restart {
+    display: none;
+}
+
+#controls.gameOver #restart {
+    display: inline-block;
+}
+
+#roll {
+    border: none;
+    background-color: transparent;
 }
 
 .player {
-    width: 100vw;
-    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    border: 10px solid transparent;
+}
+
+.scores {
+    display: flex;   
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.scores > div {
+    min-height: 5rem;
+    width: 25%;
+    padding: 2vw 2vh;
+    font-size: 3rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.held {
+    background: var(--dark);
+    color: var(--light);
+}
+
+.held::before {
+    content: "Held:";
+    display: block;
+    font-size: 1rem;
+}
+
+.current {
+    background: var(--light);
+    border: 2px solid var(--dark);
+}
+
+.current::before {
+    content: "Current:";
+    display: block;
+    font-size: 1rem;
+}
+
+.active {
+    border: 10px solid var(--orange);
+}
+
+.winner {
+    border-color: var(--green);
+}
+
+.winner .held {
+    background-color: var(--green);
 }
 
 @media only screen and (min-width: 768px) {
-    .player {
-        width: 50vw;
-        height: 100vh;
+    h2 {
+        font-size: 4rem;
+        margin: 35px 0;
+    }
+
+    #playerContainer {
+        flex-direction: row;
+    }
+
+    #controls, #controls > div, .scores {
+        flex-direction: column;
+    }
+
+    #controls {
+        top: 50%;
+        bottom: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .scores {
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+    }
+
+    .scores > div {
+        width: 40%;
     }
 }
