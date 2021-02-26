@@ -142,7 +142,6 @@ button:hover {
 .winner .held {
     background-color: var(--green);
     border: 2px solid var(--dark);
-    border-bottom: none;
     color: var(--dark);
 }
 
@@ -174,5 +173,9 @@ button:hover {
 
     .scores > div {
         width: 40%;
+    }
+
+    .winner .held {
+        border-bottom: none;
     }
 }
