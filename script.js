@@ -101,11 +101,10 @@
     
         restart() {
             this.current = 1
-            this.finished = false
+            this.winner = null
             this.player1.reset()
             this.player2.reset()
-            this.die.setNumber(1)
-            this.winner = null
+            this.die.setNumber(1)            
             this.controls.classList.remove("gameOver")
         }
     
